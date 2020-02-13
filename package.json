@@ -1,0 +1,24 @@
+{
+  "name": "webpack-study",
+  "version": "1.0.0",
+  "description": "学习webpack配置",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production --config scripts/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhz333/webpack-study.git"
+  },
+  "author": "Jenny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lhz333/webpack-study/issues"
+  },
+  "homepage": "https://github.com/lhz333/webpack-study#readme",
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
