@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   // 入口文件，可指定一个入口起点，或多个入口起点
@@ -15,7 +16,7 @@ module.exports = {
     // 必须是绝对路径（使用 Node.js 的 path 模块）
     path: path.resolve(process.cwd(), 'dist'),
     // 打包之后生产的文件名
-    filename: 'static/js/[name].[chunkHash:8].js'
+    filename: 'js/[name].[chunkHash:8].js'
   },
   module: {
     rules: [
@@ -39,9 +40,9 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 512,
-              name: 'static/images/[name].[hash:8].[ext]',
+              name: 'images/[name].[hash:8].[ext]',
               publicPath: '/'
-            },
+            }
           }
         ]
       }
@@ -55,8 +56,14 @@ module.exports = {
       template: './public/index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[chunkHash:8].css'
-    })
+      filename: 'css/[name].[chunkHash:8].css'
+    }),
+    new CopyPlugin([
+      {
+        from: path.resolve(process.cwd(), 'src/static/'),
+        to: path.resolve(process.cwd(), 'dist/static/')
+      }
+    ])
   ],
   devServer: {
     port: 3000,
