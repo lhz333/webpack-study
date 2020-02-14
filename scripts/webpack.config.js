@@ -25,8 +25,26 @@ module.exports = {
       },
       {
         test: /\.less$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader', 'postcss-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          'postcss-loader'
+        ]
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 512,
+              name: 'static/images/[name].[hash:8].[ext]',
+              publicPath: '/'
+            },
+          }
+        ]
+      }
     ]
   },
   // 插件
